@@ -223,7 +223,6 @@ var GuageWithColorBandComponent = /** @class */ (function () {
         var /** @type {?} */ i, /** @type {?} */ padRad, /** @type {?} */ radius, /** @type {?} */ ref, /** @type {?} */ sectionIndx;
         var /** @type {?} */ sectionPerc, /** @type {?} */ startPadRad, /** @type {?} */ svg, /** @type {?} */ totalPercent, /** @type {?} */ width;
         this.numSections = this.options.bandPercent.length;
-        sectionPerc = 1 / this.numSections / 2;
         padRad = 0;
         chartInset = 10;
         totalPercent = .75;
@@ -238,8 +237,8 @@ var GuageWithColorBandComponent = /** @class */ (function () {
         this.barWidth = (this.svgHeight - this.margin.top - this.margin.bottom) * .3; // 40;
         for (sectionIndx = i = 1, ref = this.numSections; 1 <= ref ? i <= ref : i >= ref; sectionIndx = 1 <= ref ? ++i : --i) {
             arcStartRad = Utils.percToRad(totalPercent);
-            arcEndRad = arcStartRad + Utils.percToRad(0.5 * this.options.bandPercent[sectionIndx]);
-            totalPercent += sectionPerc;
+            arcEndRad = arcStartRad + Utils.percToRad(0.5 * this.options.bandPercent[sectionIndx - 1]);
+            totalPercent += 0.5 * this.options.bandPercent[sectionIndx - 1];
             startPadRad = sectionIndx === 0 ? 0 : padRad / 2;
             endPadRad = sectionIndx === this.numSections ? 0 : padRad / 2;
             arc$$1 = arc()

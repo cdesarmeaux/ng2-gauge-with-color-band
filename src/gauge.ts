@@ -142,8 +142,8 @@ export class GuageWithColorBandComponent implements AfterViewInit, OnInit, OnCha
 
         for (sectionIndx = i = 1, ref = this.numSections; 1 <= ref ? i <= ref : i >= ref; sectionIndx = 1 <= ref ? ++i : --i) {
             arcStartRad = Utils.percToRad(totalPercent);
-            arcEndRad = arcStartRad + Utils.percToRad(0.5 * this.options.bandPercent[sectionIndx]);
-            totalPercent += sectionPerc;
+            arcEndRad = arcStartRad + Utils.percToRad(0.5 * this.options.bandPercent[sectionIndx - 1]);
+            totalPercent += 0.5 * this.options.bandPercent[sectionIndx - 1];
             startPadRad = sectionIndx === 0 ? 0 : padRad / 2;
             endPadRad = sectionIndx === this.numSections ? 0 : padRad / 2;
             arc = d3.arc()
